@@ -186,7 +186,6 @@ public class PathFrame extends JFrame {
                     closer(currentBtn).setBackground(Color.green);
                     currentBtn = closer(currentBtn);
                     distance = distance(currentBtn, endBtn);
-                    System.out.println("X:" + currentBtn.x + "Y" + currentBtn.y);
                 }
             }
         });
