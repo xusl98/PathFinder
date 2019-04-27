@@ -182,7 +182,14 @@ public class PathFrame extends JFrame {
                 double distance = distance(currentBtn, endBtn);
 
                 while (distance != 1) {
-                    currentBtn.pathed = true;
+                    if (!currentBtn.pathed) {
+                        currentBtn.pathed = true;
+                    } else {
+                        currentBtn.pathedTwice = true;
+                    }
+                    if (closer(currentBtn).pathed && possibleRoutes(currentBtn) == 1) {
+                        currentBtn.pathedTwice = true;
+                    }
                     closer(currentBtn).setBackground(Color.green);
                     currentBtn = closer(currentBtn);
                     distance = distance(currentBtn, endBtn);
@@ -233,10 +240,10 @@ public class PathFrame extends JFrame {
                         b.setBackground(Color.white);
                         b.end = false;
                         end = false;
-                    } else if (block && !b.block) {
+                    } else if (block && !b.block && !b.start && !b.end) {
                         b.setBackground(Color.black);
                         b.block = true;
-                    } else if (block && b.block) {
+                    } else if (block && b.block && !b.start && !b.end) {
                         b.setBackground(Color.white);
                         b.block = false;
                     }
@@ -264,16 +271,16 @@ public class PathFrame extends JFrame {
         MyButton endBtn = null;
 
         for (MyButton b : buttons) {
-            if (b.x == current.x && b.y == (current.y + 1) && !b.block && !b.start && !b.pathed) {
+            if (b.x == current.x && b.y == (current.y + 1) && !b.block && !b.start && !b.pathedTwice) {
                 top = b;
             }
-            if (b.x == current.x && b.y == (current.y - 1) && !b.block && !b.start && !b.pathed) {
+            if (b.x == current.x && b.y == (current.y - 1) && !b.block && !b.start && !b.pathedTwice) {
                 bottom = b;
             }
-            if (b.y == current.y && b.x == (current.x + 1) && !b.block && !b.start && !b.pathed) {
+            if (b.y == current.y && b.x == (current.x + 1) && !b.block && !b.start && !b.pathedTwice) {
                 right = b;
             }
-            if (b.y == current.y && b.x == (current.x - 1) && !b.block && !b.start && !b.pathed) {
+            if (b.y == current.y && b.x == (current.x - 1) && !b.block && !b.start && !b.pathedTwice) {
                 left = b;
             }
             if (b.end) {
@@ -382,5 +389,33 @@ public class PathFrame extends JFrame {
             }
 
         }
+    }
+
+    public int possibleRoutes(MyButton currentBtn) {
+        MyButton top = null;
+        MyButton bottom = null;
+        MyButton right = null;
+        MyButton left = null;
+        int numberOfRoutes = 0;
+        for (MyButton b : buttons) {
+            if (b.x == currentBtn.x && b.y == (currentBtn.y + 1) && !b.block && !b.start && !b.pathedTwice) {
+                top = b;
+                numberOfRoutes++;
+            }
+            if (b.x == currentBtn.x && b.y == (currentBtn.y - 1) && !b.block && !b.start && !b.pathedTwice) {
+                bottom = b;
+                numberOfRoutes++;
+            }
+            if (b.y == currentBtn.y && b.x == (currentBtn.x + 1) && !b.block && !b.start && !b.pathedTwice) {
+                right = b;
+                numberOfRoutes++;
+            }
+            if (b.y == currentBtn.y && b.x == (currentBtn.x - 1) && !b.block && !b.start && !b.pathedTwice) {
+                left = b;
+                numberOfRoutes++;
+            }
+
+        }
+        return numberOfRoutes;
     }
 }

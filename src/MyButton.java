@@ -22,6 +22,7 @@ public class MyButton extends JButton implements Serializable{
     boolean end = false;
     boolean block = false;
     boolean pathed = false;
+    boolean pathedTwice = false;
 
     public MyButton(int x, int y) {
         this.x = x;
