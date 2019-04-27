@@ -79,32 +79,31 @@ public class PathFrame extends JFrame {
                 KeyEvent.VK_T);
         menuDeletePath = new JMenuItem("Delete Path",
                 KeyEvent.VK_T);
-        
         //DELETE PATH
         menuDeletePath.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 MyButton endBtn = null;
-                for (MyButton b : buttons){
-                    if (b.start){
+                for (MyButton b : buttons) {
+                    if (b.start) {
                         b.pathed = false;
                     }
-                    if (b.pathed){
+                    if (b.pathed) {
                         b.setBackground(Color.white);
                         b.pathed = false;
                     }
-                    if (b.end){
+                    if (b.end) {
                         endBtn = b;
                     }
                 }
-                for (MyButton b : buttons){
-                    if (b.x == endBtn.x && b.y == (endBtn.y + 1) && !b.block && !b.start){
+                for (MyButton b : buttons) {
+                    if (b.x == endBtn.x && b.y == (endBtn.y + 1) && !b.block && !b.start) {
                         b.setBackground(Color.white);
-                    } else if (b.x == endBtn.x && b.y == (endBtn.y - 1) && !b.block && !b.start){
+                    } else if (b.x == endBtn.x && b.y == (endBtn.y - 1) && !b.block && !b.start) {
                         b.setBackground(Color.white);
-                    } else if (b.y == endBtn.y && b.x == (endBtn.x + 1) && !b.block && !b.start){
+                    } else if (b.y == endBtn.y && b.x == (endBtn.x + 1) && !b.block && !b.start) {
                         b.setBackground(Color.white);
-                    } else if (b.y == endBtn.y && b.x == (endBtn.x - 1) && !b.block && !b.start){
+                    } else if (b.y == endBtn.y && b.x == (endBtn.x - 1) && !b.block && !b.start) {
                         b.setBackground(Color.white);
                     }
                 }
@@ -361,24 +360,23 @@ public class PathFrame extends JFrame {
             } catch (Exception e) {
 
             } finally {
-                for (int i = 0; i < buttons.size(); i++){
+                for (int i = 0; i < buttons.size(); i++) {
                     buttons.get(i).block = cargados.get(i).block;
                     buttons.get(i).pathed = cargados.get(i).pathed;
                     buttons.get(i).start = cargados.get(i).start;
                     buttons.get(i).end = cargados.get(i).end;
-                    
-                    if (buttons.get(i).start){
+
+                    if (buttons.get(i).start) {
                         buttons.get(i).setBackground(Color.blue);
-                    } else if (buttons.get(i).end){
+                    } else if (buttons.get(i).end) {
                         buttons.get(i).setBackground(Color.red);
-                    } else if (buttons.get(i).block){
+                    } else if (buttons.get(i).block) {
                         buttons.get(i).setBackground(Color.black);
-                    } else if (buttons.get(i).pathed){
+                    } else if (buttons.get(i).pathed) {
                         buttons.get(i).setBackground(Color.green);
                     }
                 }
-                
-                
+
                 if (ois != null) {
                     ois.close();
                 }
