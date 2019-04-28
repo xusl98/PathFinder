@@ -156,6 +156,7 @@ public class PathFrame extends JFrame {
                     b.start = false;
                     b.end = false;
                     b.pathed = false;
+                    b.pathedTwice = false;
                     start = false;
                     end = false;
                 }
