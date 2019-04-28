@@ -87,9 +87,11 @@ public class PathFrame extends JFrame {
                 for (MyButton b : buttons) {
                     if (b.start) {
                         b.pathed = false;
+                        b.pathedTwice = false;
                     }
                     if (b.pathed) {
                         b.setBackground(Color.white);
+                        b.pathedTwice = false;
                         b.pathed = false;
                     }
                     if (b.end) {
